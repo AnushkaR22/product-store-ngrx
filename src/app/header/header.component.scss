@@ -1,0 +1,20 @@
+.spacer {
+    flex: 1 1 auto;
+}
+
+.cart-button {
+    overflow: hidden;
+
+    .badge {
+        content: attr(value);
+        font-size: 13px;
+        color: #fff;
+        background: red;
+        border-radius: 100%;
+        padding: 2px 3px;
+        position: relative;
+        left: -8px;
+        top: -17px;
+        opacity: 0.9;
+    }
+}

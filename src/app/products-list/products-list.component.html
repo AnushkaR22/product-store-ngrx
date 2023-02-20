@@ -1,0 +1,37 @@
+<!-- header -->
+<app-header [productQuantity]="productQuantity"></app-header>
+
+<!-- Product list page starts-->
+<div class="container">
+    <div class="product" *ngFor="let products of productArray; let i = index">
+        <mat-card>
+            <div class="product-image">
+                <img [src]="products.image" alt="product image">
+            </div>
+            <div class="product-info">
+                <mat-card-content>
+                    <p matTooltip="{{products.title}}">{{products.title}}</p>
+                    <div class="rating-price">
+                        <ngb-rating [readonly]="true" [max]=5 [rate]="products.rating.rate"></ngb-rating>
+                        <p>$ {{products.price | number: '1.2-2'}}</p>
+                    </div>
+                    <div class="add-to-cart-btn">
+                        <button mat-raised-button color="primary" *ngIf="!productInCart(products)"
+                            (click)="addToCart(products)">
+                            <mat-icon>shopping_cart</mat-icon>
+                            ADD TO CART
+                        </button>
+                        <span class="icons" *ngFor="let cart of cartData; let index = index">
+                            <ng-container *ngIf="products.id === cart.product.id">
+                                <mat-icon (click)="decrementQty(index)">remove</mat-icon>
+                                <span class="quantity">{{cart?.quantity}}</span>
+                                <mat-icon (click)="incrementQty(index)">add</mat-icon>
+                            </ng-container>
+                        </span>
+                    </div>
+                </mat-card-content>
+            </div>
+        </mat-card>
+    </div>
+</div>
+<!-- Product list page ends-->

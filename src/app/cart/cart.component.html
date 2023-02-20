@@ -1,0 +1,45 @@
+<!-- header -->
+<app-header [productQuantity]="productQuantity"></app-header>
+
+<!-- Cart page starts-->
+<div class="cart">
+    <div class="total-amount">
+        Total amount: ${{cartTotal | number: '1.2-2'}}
+    </div>
+
+    <ng-container *ngIf="!cartData?.length || !cartData">
+        <p class="empty-cart">
+            Your cart is empty!!
+        </p>
+    </ng-container>
+    <div class="container cart-products">
+        <div class="cart-card" *ngFor="let products of cartData; let i = index">
+            <mat-card class="product-card">
+                <mat-card-header>
+                    <img mat-card-sm-image [src]="products.product.image">
+                    <mat-card-title-group>
+                        <div class="title">
+                            <mat-card-title>{{products.product.title}}</mat-card-title>
+                        </div>
+
+                        <div class="sub-content">
+                            <span class="price">$ {{products.product.price | number: '1.2-2'}}</span>
+                            <span class="icons">
+                                <mat-icon (click)="decrementQty(i)">remove</mat-icon>
+                                <span class="quantity">{{products.quantity}}</span>
+                                <mat-icon (click)="incrementQty(i)">add</mat-icon>
+                                <mat-icon color="warn" (click)="deleteProduct(i)">delete</mat-icon>
+                            </span>
+                        </div>
+                    </mat-card-title-group>
+                </mat-card-header>
+
+                <mat-card-content>
+                    <p class="description" matTooltip={{products.product.description}}>{{products.product.description}}
+                    </p>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+</div>
+<!-- Cart page ends-->
