@@ -3,6 +3,7 @@ import { Cart } from '../store/models/product.model';
 import * as fromApp from '../store/app.reducer';
 import { Store } from '@ngrx/store';
 import { IncrementCartQuantity, DecrementCartQuantity, RemoveProductFromCart } from '../store/actions/product.action';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-cart',
@@ -15,7 +16,7 @@ export class CartComponent implements OnInit {
   productQuantity: number = 0;
   cartTotal: number = 0;
 
-  constructor( private store: Store<fromApp.AppState>) { }
+  constructor(private store: Store<fromApp.AppState>, private toastr: ToastrService) { }
   ngOnInit(): void {
     this.getCartProducts();
   }
@@ -43,5 +44,6 @@ export class CartComponent implements OnInit {
   // remove item from cart
   onRemoveCartItem(productId: string): void {
     this.store.dispatch(new RemoveProductFromCart(productId));
+    this.toastr.success('Successfully', 'Product removed from cart', { timeOut: 500 });
   }
 }

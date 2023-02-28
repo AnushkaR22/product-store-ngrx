@@ -3,7 +3,7 @@ import { Cart, Products } from '../store/models/product.model';
 
 import { ToastrService } from 'ngx-toastr';
 import { select, Store } from '@ngrx/store';
-import { AddProductToCart, RemoveProductFromCart, IncrementCartQuantity, DecrementCartQuantity } from '../store/actions/product.action';
+import { AddProductToCart, IncrementCartQuantity, DecrementCartQuantity } from '../store/actions/product.action';
 import * as fromApp from '../store/app.reducer';
 
 @Component({
@@ -17,9 +17,7 @@ export class ProductsListComponent implements OnInit {
   cartData: Cart[];
   quantity: number = 1;
 
-  constructor(private store: Store<fromApp.AppState>,  private toastr: ToastrService) { 
-    
-  }
+  constructor(private store: Store<fromApp.AppState>, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.getProductsList();
@@ -46,11 +44,15 @@ export class ProductsListComponent implements OnInit {
     this.toastr.success('Successfully', 'Product added', { timeOut: 500 });
   }
 
-  
+
   // get cart products from localstorage 
   getCartProducts() {
-    this.store.select('shop').subscribe(shop => {
-      this.cartData = shop.cart;
+    this.store.select('shop').subscribe({
+      next: (shop) => {
+        this.cartData = shop.cart;
+      },
+      error: (error) => console.error(error),
+      complete: () => console.info('complete')
     });
   }
 
@@ -64,7 +66,7 @@ export class ProductsListComponent implements OnInit {
     this.store.dispatch(new IncrementCartQuantity(productId));
   }
 
-    // decrement cart item
+  // decrement cart item
   onDecrementCartItem(productId: string): void {
     this.store.dispatch(new DecrementCartQuantity(productId));
   }
