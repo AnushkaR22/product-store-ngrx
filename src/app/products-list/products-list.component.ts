@@ -59,15 +59,13 @@ export class ProductsListComponent implements OnInit {
     return this.cartData.findIndex(p => p.product.id == product.id) != -1;
   }
 
+  // increment cart item
   onIncrementCartItem(productId: string): void {
     this.store.dispatch(new IncrementCartQuantity(productId));
   }
 
+    // decrement cart item
   onDecrementCartItem(productId: string): void {
     this.store.dispatch(new DecrementCartQuantity(productId));
-  }
-
-  onRemoveCartItem(productId: string): void {
-    this.store.dispatch(new RemoveProductFromCart(productId));
   }
 }

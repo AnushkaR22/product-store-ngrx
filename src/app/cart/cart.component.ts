@@ -30,14 +30,17 @@ export class CartComponent implements OnInit {
     });
   }
 
+  // increment cart item
   onIncrementCartItem(productId: string): void {
     this.store.dispatch(new IncrementCartQuantity(productId));
   }
 
+  // decrement cart item
   onDecrementCartItem(productId: string): void {
     this.store.dispatch(new DecrementCartQuantity(productId));
   }
 
+  // remove item from cart
   onRemoveCartItem(productId: string): void {
     this.store.dispatch(new RemoveProductFromCart(productId));
   }
