@@ -1,15 +1,22 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import {Store} from '@ngrx/store';
+import {Observable} from 'rxjs';
+import * as fromApp from '../store/app.reducer';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit{
 
-  @Input() productQuantity;
-  constructor(private route: Router) { }
+  shop: Observable<any>;
+  constructor(private route: Router, private store: Store<fromApp.AppState>) { }
+
+  ngOnInit() {
+    this.shop = this.store.select('shop');
+  }
 
   //navigate to cart
   navigateToCart() {

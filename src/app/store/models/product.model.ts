@@ -11,8 +11,7 @@ export interface Products {
     }
 }
 
-
-export interface AddProductToCart {
+export interface Cart {
     id: string;
     product: Products;
     quantity: number;

@@ -1,5 +1,5 @@
 <!-- header -->
-<app-header [productQuantity]="productQuantity"></app-header>
+<app-header></app-header>
 
 <!-- Cart page starts-->
 <div class="cart">
@@ -25,10 +25,10 @@
                         <div class="sub-content">
                             <span class="price">$ {{products.product.price | number: '1.2-2'}}</span>
                             <span class="icons">
-                                <mat-icon (click)="decrementQty(i)">remove</mat-icon>
+                                <mat-icon (click)="onDecrementCartItem(products.id)">remove</mat-icon>
                                 <span class="quantity">{{products.quantity}}</span>
-                                <mat-icon (click)="incrementQty(i)">add</mat-icon>
-                                <mat-icon color="warn" (click)="deleteProduct(i)">delete</mat-icon>
+                                <mat-icon (click)="onIncrementCartItem(products.id)">add</mat-icon>
+                                <mat-icon color="warn" (click)="onRemoveCartItem(products.id)">delete</mat-icon>
                             </span>
                         </div>
                     </mat-card-title-group>

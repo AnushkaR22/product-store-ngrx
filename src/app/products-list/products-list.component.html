@@ -1,9 +1,9 @@
 <!-- header -->
-<app-header [productQuantity]="productQuantity"></app-header>
+<app-header></app-header>
 
 <!-- Product list page starts-->
 <div class="container">
-    <div class="product" *ngFor="let products of productArray; let i = index">
+    <div class="product" *ngFor="let products of productArray; let i=index">
         <mat-card>
             <div class="product-image">
                 <img [src]="products.image" alt="product image">
@@ -22,10 +22,10 @@
                             ADD TO CART
                         </button>
                         <span class="icons" *ngFor="let cart of cartData; let index = index">
-                            <ng-container *ngIf="products.id === cart.product.id">
-                                <mat-icon (click)="decrementQty(index)">remove</mat-icon>
+                            <ng-container *ngIf="products.id === cart.product.id && productInCart(products)">
+                                <mat-icon (click)="onDecrementCartItem(cart.id)">remove</mat-icon>
                                 <span class="quantity">{{cart?.quantity}}</span>
-                                <mat-icon (click)="incrementQty(index)">add</mat-icon>
+                                <mat-icon (click)="onIncrementCartItem(cart.id)">add</mat-icon>
                             </ng-container>
                         </span>
                     </div>

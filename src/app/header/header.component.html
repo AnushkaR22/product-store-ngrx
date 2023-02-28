@@ -6,7 +6,7 @@
     <button mat-icon-button aria-label="icon-button with shopping cart icon" class="cart-button"
       (click)="navigateToCart()">
       <mat-icon>shopping_cart</mat-icon>
-      <span class="badge">{{productQuantity}}</span>
+      <span class="badge">{{(shop | async).cart.length}}</span>
     </button>
   </mat-toolbar-row>
 </mat-toolbar>
