@@ -12,7 +12,7 @@
             Your cart is empty!!
         </p>
     </ng-container>
-    <div class="container cart-products">
+    <div class="container cart-products" *ngIf="cartData">
         <div class="cart-card" *ngFor="let products of cartData; let i = index">
             <mat-card class="product-card">
                 <mat-card-header>
@@ -40,6 +40,13 @@
                 </mat-card-content>
             </mat-card>
         </div>
+    </div>
+
+    <div class="backButton">
+        <button mat-raised-button color="primary" routerLink="/">
+            <mat-icon>arrow_back</mat-icon>
+            Continue Shopping
+        </button>
     </div>
 </div>
 <!-- Cart page ends-->

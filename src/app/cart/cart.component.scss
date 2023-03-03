@@ -75,3 +75,12 @@
     font-weight: 700;
     font-size: 2rem;
 }
+
+.backButton {
+    display: flex;
+    justify-content: center;
+
+    button {
+        color: white;
+    }
+}

@@ -25,10 +25,6 @@ export function productReducer(state = initialState, action: ProductActions.Prod
                 item => item.id === action.payload
             );
 
-            if (updatedCart[updatedItemIndex].quantity > 9) {
-                return state;
-            }
-
             const incrementedItem = {
                 ...updatedCart[updatedItemIndex]
             };
@@ -47,7 +43,14 @@ export function productReducer(state = initialState, action: ProductActions.Prod
             );
 
             if (updatedCart[updatedItemIndex].quantity < 2) {
-                return state;
+                updatedCart = [...state.cart];
+                updatedItemIndex = updatedCart.findIndex(
+                    item => item.id === action.payload
+                );
+    
+                updatedCart.splice(updatedItemIndex, 1);
+    
+                return { ...state, cart: updatedCart };
             }
 
 

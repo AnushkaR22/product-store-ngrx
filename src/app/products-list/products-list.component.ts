@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Cart, Products } from '../store/models/product.model';
 
 import { ToastrService } from 'ngx-toastr';
-import { select, Store } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 import { AddProductToCart, IncrementCartQuantity, DecrementCartQuantity } from '../store/actions/product.action';
 import * as fromApp from '../store/app.reducer';
 
